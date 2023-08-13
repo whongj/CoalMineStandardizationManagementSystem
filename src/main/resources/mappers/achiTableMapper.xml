@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghua.mem.dao.achiTableMapper">
+  <resultMap id="BaseResultMap" type="com.tsinghua.mem.pojo.achiTable">
+    <result column="itemID" jdbcType="VARCHAR" property="itemid" />
+    <result column="achiID" jdbcType="VARCHAR" property="achiid" />
+    <result column="achiTypeID" jdbcType="VARCHAR" property="achitypeid" />
+    <result column="achiTypeName" jdbcType="VARCHAR" property="achitypename" />
+    <result column="achiKey" jdbcType="VARCHAR" property="achikey" />
+    <result column="achiValue" jdbcType="VARCHAR" property="achivalue" />
+    <result column="achiUnit" jdbcType="VARCHAR" property="achiunit" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    itemID, achiID, achiTypeID, achiTypeName, achiKey, achiValue, achiUnit
+  </sql>
+  <select id="selectByExample" parameterType="com.tsinghua.mem.pojo.achiTableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from achiTable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.tsinghua.mem.pojo.achiTableExample">
+    delete from achiTable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tsinghua.mem.pojo.achiTable">
+    insert into achiTable (itemID, achiID, achiTypeID, 
+      achiTypeName, achiKey, achiValue, 
+      achiUnit)
+    values (#{itemid,jdbcType=VARCHAR}, #{achiid,jdbcType=VARCHAR}, #{achitypeid,jdbcType=VARCHAR}, 
+      #{achitypename,jdbcType=VARCHAR}, #{achikey,jdbcType=VARCHAR}, #{achivalue,jdbcType=VARCHAR}, 
+      #{achiunit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tsinghua.mem.pojo.achiTable">
+    insert into achiTable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        itemID,
+      </if>
+      <if test="achiid != null">
+        achiID,
+      </if>
+      <if test="achitypeid != null">
+        achiTypeID,
+      </if>
+      <if test="achitypename != null">
+        achiTypeName,
+      </if>
+      <if test="achikey != null">
+        achiKey,
+      </if>
+      <if test="achivalue != null">
+        achiValue,
+      </if>
+      <if test="achiunit != null">
+        achiUnit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        #{itemid,jdbcType=VARCHAR},
+      </if>
+      <if test="achiid != null">
+        #{achiid,jdbcType=VARCHAR},
+      </if>
+      <if test="achitypeid != null">
+        #{achitypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="achitypename != null">
+        #{achitypename,jdbcType=VARCHAR},
+      </if>
+      <if test="achikey != null">
+        #{achikey,jdbcType=VARCHAR},
+      </if>
+      <if test="achivalue != null">
+        #{achivalue,jdbcType=VARCHAR},
+      </if>
+      <if test="achiunit != null">
+        #{achiunit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tsinghua.mem.pojo.achiTableExample" resultType="java.lang.Long">
+    select count(*) from achiTable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update achiTable  set achiValue = #{achivalue} where achiID = #{achiid}
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update achiTable
+    set itemID = #{record.itemid,jdbcType=VARCHAR},
+      achiID = #{record.achiid,jdbcType=VARCHAR},
+      achiTypeID = #{record.achitypeid,jdbcType=VARCHAR},
+      achiTypeName = #{record.achitypename,jdbcType=VARCHAR},
+      achiKey = #{record.achikey,jdbcType=VARCHAR},
+      achiValue = #{record.achivalue,jdbcType=VARCHAR},
+      achiUnit = #{record.achiunit,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
