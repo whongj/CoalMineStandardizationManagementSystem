@@ -10,9 +10,7 @@ spring:
 
 
     datasource: #数据库相关
-      url: jdbc:mysql://152.136.36.195:3306/taskTest?useUnicode=true&useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useAffectedRows=true&allowMultiQueries=true
       username: root
-      password: Tsinghua2023#
       driver-class-name: com.mysql.jdbc.Driver
     mvc:
       date-format: yyyy-MM-dd HH:mm:ss #mvc接收参数时对日期进行格式化
@@ -23,9 +21,7 @@ spring:
 
 tencent:
   yun:
-    secretid:AKIDOitshZL3czpV7gS7cyBHDVeayJXaWxOg
-    secretkey:IMH0Xt2ulTyHONBmAMNBpNySQI1jHdnl
-
+ 
 #如果采用xml配置方式则需要进行加载扫描 xml文件放在src/main/java目录或者放在resource目录都可以，指定好路径就可以
 mybatis:
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
