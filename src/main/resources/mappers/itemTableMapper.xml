@@ -86,6 +86,11 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="selectByTaskId" parameterType="int" resultMap="BaseResultMap">
+    select *
+    from itemTable where taskID = #{taskid}  order by itemID
+  </select>
   <delete id="deleteByExample" parameterType="com.tsinghua.mem.pojo.itemTableExample">
     delete from itemTable
     <if test="_parameter != null">
@@ -93,7 +98,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tsinghua.mem.pojo.itemTable">
-    insert into itemTable (taskID, itemID, itemName, 
+    insert into itemTable (taskID, itemID, itemName,
       itemTypeID, itemTypeName, itemState, 
       itemOper, itemDate)
     values (#{taskid,jdbcType=VARCHAR}, #{itemid,jdbcType=VARCHAR}, #{itemname,jdbcType=VARCHAR}, 

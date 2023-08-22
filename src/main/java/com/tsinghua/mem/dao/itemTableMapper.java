@@ -17,6 +17,9 @@ public interface itemTableMapper {
 
     List<itemTable> selectByExample(itemTableExample example);
 
+    List<itemTable> selectByTaskId (int taskId);
+
+
     int updateByExampleSelective(@Param("record") itemTable record, @Param("example") itemTableExample example);
 
     int updateByExample(@Param("record") itemTable record, @Param("example") itemTableExample example);

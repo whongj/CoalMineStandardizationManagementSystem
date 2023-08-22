@@ -1,5 +1,6 @@
 package com.tsinghua.mem.dao;
 
+import com.tsinghua.mem.pojo.TaskPage;
 import com.tsinghua.mem.pojo.taskTable;
 import com.tsinghua.mem.pojo.taskTableExample;
 import java.util.List;
@@ -26,5 +27,8 @@ public interface taskTableMapper {
 
     //分页查询tasktable
     List<taskTable> selectAllByPage(int start,int end);
+
+
+    List<TaskPage> selectTaskPage();
 
 }

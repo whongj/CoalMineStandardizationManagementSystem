@@ -10,6 +10,34 @@
     <result column="taskOper" jdbcType="VARCHAR" property="taskoper" />
     <result column="taskState" jdbcType="INTEGER" property="taskstate" />
   </resultMap>
+  <resultMap type="com.tsinghua.mem.pojo.TaskPage" id="taskpage">
+    <result column="taskID" jdbcType="VARCHAR" property="taskid" />
+    <result column="taskTypeID" jdbcType="VARCHAR" property="tasktypeid" />
+    <result column="taskTypeName" jdbcType="VARCHAR" property="tasktypename" />
+    <result column="taskDate" jdbcType="TIMESTAMP" property="taskdate" />
+    <result column="plateNumber" jdbcType="VARCHAR" property="platenumber" />
+    <result column="taskOper" jdbcType="VARCHAR" property="taskoper" />
+    <result column="taskState" jdbcType="INTEGER" property="taskstate" />
+    <!-- 一对多级联查询，ofType表示集合中的元素类型，将id传递给selectStudentByClassId-->
+    <collection property="itemTables"
+                ofType="com.tsinghua.mem.pojo.itemTable" column="taskid"
+                select="com.tsinghua.mem.dao.itemTableMapper.selectByTaskId" />
+  </resultMap>
+
+  <select id="selectTaskPage"
+          resultMap="taskpage">
+    select * from taskTable
+  </select>
+
+  <resultMap id="BaseResultMap" type="com.tsinghua.mem.pojo.taskTable">
+    <result column="taskID" jdbcType="VARCHAR" property="taskid" />
+    <result column="taskTypeID" jdbcType="VARCHAR" property="tasktypeid" />
+    <result column="taskTypeName" jdbcType="VARCHAR" property="tasktypename" />
+    <result column="taskDate" jdbcType="TIMESTAMP" property="taskdate" />
+    <result column="plateNumber" jdbcType="VARCHAR" property="platenumber" />
+    <result column="taskOper" jdbcType="VARCHAR" property="taskoper" />
+    <result column="taskState" jdbcType="INTEGER" property="taskstate" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
